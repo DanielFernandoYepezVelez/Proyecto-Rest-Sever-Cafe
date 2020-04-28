@@ -89,21 +89,5 @@ debo importar un elmento y ese archivo donde se va a utilizar ese
 elemento debe requerirlo o importarlo.
 ------------------------------------------------------------------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+UNDERSCORE =>
+Es una liberia que me sirve para validar cuales son los campos permitidos que se van a poder modificar o ACTUALIZAR en una base de datos no relacional de un objeto, por el usuario en el frontend.
