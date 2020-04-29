@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(require('./routes/usuario'));
 
 /* Connected Database */
-mongoose.connect('mongodb+srv://DanielFernandoYepezVelez:SsFjmPowOMhf4tJ1@cluster0-iw8eb.mongodb.net/cafe?retryWrites=true&w=majority', {
+mongoose.connect(process.env.urlDB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
