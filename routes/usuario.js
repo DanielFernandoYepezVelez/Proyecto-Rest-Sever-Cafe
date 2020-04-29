@@ -9,8 +9,8 @@ const Usuario = require('../models/usuario');
 app.get('/usuarios', (req, res) => {
 
     /* Parametros Opcionales En La URL, CON GET*/
-    // let desde = req.query.desde || 0;
-    let { desde } = req.query;
+    // let { desde } = req.query;
+    let desde = req.query.desde || 0;
     let limite = req.query.limite || 5;
     desde = Number(desde);
     limite = Number(limite)
