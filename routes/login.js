@@ -7,7 +7,7 @@ const app = express();
 const Usuario = require('../models/usuario');
 const { verificarToken } = require('../middlewares/authentication');
 
-app.post('/login', verificarToken, (req, res) => {
+app.post('/login', /* verificarToken, */ (req, res) => {
     let body = req.body;
 
     Usuario.findOne({ email: body.email }, (err, usuarioDB) => {
