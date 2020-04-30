@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 /* Routes */
-app.use(require('./routes/usuario'));
+app.use(require('./routes/index'));
 
 /* Connected Database */
 mongoose.connect(process.env.urlDB, {

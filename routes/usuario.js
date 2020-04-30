@@ -4,9 +4,10 @@ const _ = require('underscore');
 const app = express();
 
 const Usuario = require('../models/usuario');
+const { verificarToken, verificarAdminRole } = require('../middlewares/authentication');
 
 /* Optener 16 Usuarios Paginados */
-app.get('/usuarios', (req, res) => {
+app.get('/usuarios', verificarToken, (req, res) => {
 
     /* Parametros Opcionales En La URL, CON GET*/
     // let { desde } = req.query;
@@ -39,7 +40,7 @@ app.get('/usuarios', (req, res) => {
         });
 });
 
-app.post('/usuario', (req, res) => {
+app.post('/usuario', [verificarToken, verificarAdminRole], (req, res) => {
     let body = req.body;
 
     let usuario = new Usuario({
@@ -68,7 +69,7 @@ app.post('/usuario', (req, res) => {
     });
 });
 
-app.put('/usuario/:id', (req, res) => {
+app.put('/usuario/:id', [verificarToken, verificarAdminRole], (req, res) => {
     let id = req.params.id;
     let body = _.pick(req.body, ['nombre', 'email', 'img', 'role', 'estado']);
 
@@ -116,7 +117,7 @@ app.put('/usuario/:id', (req, res) => {
  */
 
 /* Eliminar Usuario Pero Cambiando El Estado En La Base De Datos */
-app.delete('/usuario/:id', (req, res) => {
+app.delete('/usuario/:id', [verificarToken, verificarAdminRole], (req, res) => {
     let id = req.params.id;
 
     /* Data que se va a actualizar */
