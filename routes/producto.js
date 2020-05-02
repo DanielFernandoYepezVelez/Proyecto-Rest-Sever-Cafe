@@ -30,6 +30,36 @@ app.get('/productos', verificarToken, (req, res) => {
         });
 });
 
+app.get('/productos/buscar/:termino', verificarToken, (req, res) => {
+
+    const termino = req.params.termino;
+
+    /* Para Ejecutar Busquedas Flexibles */
+    let regEx = new RegExp(termino, 'i');
+
+    Producto.find({ nombre: regEx })
+        .populate('categoria', 'nombre descripcion')
+        .exec((err, productos) => {
+            if (err) {
+                return res.status(500).json({
+                    ok: false,
+                    err
+                });
+            }
+
+            res.json({
+                ok: true,
+                productos
+            });
+        });
+});
+
+
+
+
+
+
+
 app.get('/productos/:id', verificarToken, (req, res) => {
     const id = req.params.id
 

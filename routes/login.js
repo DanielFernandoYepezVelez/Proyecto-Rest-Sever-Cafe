@@ -9,7 +9,7 @@ const client = new OAuth2Client(process.env.CLIENT_ID);
 const Usuario = require('../models/usuario');
 const { verificarToken } = require('../middlewares/authentication');
 
-app.post('/login', verificarToken, (req, res) => {
+app.post('/login', (req, res) => {
     let body = req.body;
 
     Usuario.findOne({ email: body.email }, (err, usuarioDB) => {
