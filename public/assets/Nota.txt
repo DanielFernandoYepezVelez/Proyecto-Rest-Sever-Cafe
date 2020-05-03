@@ -1,0 +1,1 @@
+En esta carpeta se almacenan archivos estaticos que van a ser generales o globales para toda la aplicación, o estilos, imagenes, etc.

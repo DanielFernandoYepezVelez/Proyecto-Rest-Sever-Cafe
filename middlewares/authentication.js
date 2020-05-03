@@ -43,8 +43,32 @@ const verificarAdminRole = (req, res, next) => {
     }
 }
 
+/* ===========================
+  VERIFICAR TOKEN PARA IMAGEN
+  ============================
+*/
+
+const verificarTokenImg = (req, res, next) => {
+    let token = req.query.token;
+
+    jwt.verify(token, process.env.FIRMA, (err, decoded) => {
+        if (err) {
+            return res.status(401).json({
+                ok: false,
+                err: {
+                    message: 'Token No Válido'
+                }
+            });
+        }
+        /* decoded es el payload y va contener la info del usuario, por eso lo llamo de la siguiente manera  y recordar como lo llame anteriormente en el jwt.sign, se llama igual usuario */
+        req.usuario = decoded.usuario;
+        next();
+    });
+}
+
 
 module.exports = {
     verificarToken,
-    verificarAdminRole
+    verificarAdminRole,
+    verificarTokenImg
 }
