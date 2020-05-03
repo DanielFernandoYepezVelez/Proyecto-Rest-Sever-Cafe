@@ -5,6 +5,7 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 
 /* Settings */
 const app = express();
@@ -12,6 +13,7 @@ const app = express();
 /* Middleware */
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(fileUpload({ useTempFiles: true, tempFileDir: '/tmp/' }));
 
 /* Routes */
 app.use(require('./routes/index'));
